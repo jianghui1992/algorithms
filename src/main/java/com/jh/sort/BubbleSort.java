@@ -24,7 +24,7 @@ public class BubbleSort {
 
         }
     }
-
+    //如果i=j,就会出问题,这种写法  N^N=0,就是就都编程0了
     private static void swap(int[] arr, int i, int j) {
         arr[i] = arr[i] ^ arr[j];
         arr[j] = arr[i] ^ arr[j];
