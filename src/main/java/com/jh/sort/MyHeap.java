@@ -1,17 +1,54 @@
 package com.jh.sort;
 
-import java.util.Random;
-
 /**
  * 大根堆实现
  * Created by: edgewalk
  * 2020-07-21 23:19F
  */
 public class MyHeap {
+    public static void main(String[] args) {
+        int value = 1000;
+        int limit = 100;
+        int testTimes = 1000000;
+        for (int i = 0; i < testTimes; i++) {
+            int curLimit = (int) (Math.random() * limit) + 1;
+            MyMaxHeap my = new MyMaxHeap(curLimit);
+            RightMaxHeap test = new RightMaxHeap(curLimit);
+            int curOpTimes = (int) (Math.random() * limit);
+            for (int j = 0; j < curOpTimes; j++) {
+                if (my.isEmpty() != test.isEmpty()) {
+                    System.out.println("Oops!");
+                }
+                if (my.isFull() != test.isFull()) {
+                    System.out.println("Oops!");
 
+                }
+                if (my.isEmpty()) {
+                    int curValue = (int) (Math.random() * value);
+                    my.push(curValue);
+                    test.push(curValue);
+                } else if (my.isFull()) {
+                    if (my.pop() != test.pop()) {
+                        System.out.println("Oops!");
+                    }
+                } else {
+                    if (Math.random() < 0.5) {
+                        int curValue = (int) (Math.random() * value);
+                        my.push(curValue);
+                        test.push(curValue);
+                    } else {
+                        if (my.pop() != test.pop()) {
+                            System.out.println("Oops!");
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("finish!");
 
+    }
 
-    public static class MyMaxHeap{
+    public static class MyMaxHeap {
         private final int limit; //数组的大小
         private final int[] heap;  //存储数据的数组
         private int heapSize; //当前组织成堆结构的数据的个数/新加的数放置的位置
@@ -76,18 +113,17 @@ public class MyHeap {
         }
 
         public boolean isEmpty() {
-            return heapSize==0;
+            return heapSize == 0;
         }
 
         public boolean isFull() {
-            return heapSize==limit;
+            return heapSize == limit;
         }
     }
 
-
     public static class RightMaxHeap {
-        private int[] arr;
         private final int limit;
+        private final int[] arr;
         private int size;
 
         public RightMaxHeap(int limit) {
@@ -122,48 +158,6 @@ public class MyHeap {
             arr[maxIndex] = arr[--size];
             return ans;
         }
-
-    }
-
-    public static void main(String[] args) {
-        int value = 1000;
-        int limit = 100;
-        int testTimes = 1000000;
-        for (int i = 0; i < testTimes; i++) {
-            int curLimit = (int) (Math.random() * limit) + 1;
-            MyMaxHeap my = new MyMaxHeap(curLimit);
-            RightMaxHeap test = new RightMaxHeap(curLimit);
-            int curOpTimes = (int) (Math.random() * limit);
-            for (int j = 0; j < curOpTimes; j++) {
-                if (my.isEmpty() != test.isEmpty()) {
-                    System.out.println("Oops!");
-                }
-                if (my.isFull() != test.isFull()) {
-                    System.out.println("Oops!");
-
-                }
-                if (my.isEmpty()) {
-                    int curValue = (int) (Math.random() * value);
-                    my.push(curValue);
-                    test.push(curValue);
-                } else if (my.isFull()) {
-                    if (my.pop() != test.pop()) {
-                        System.out.println("Oops!");
-                    }
-                } else {
-                    if (Math.random() < 0.5) {
-                        int curValue = (int) (Math.random() * value);
-                        my.push(curValue);
-                        test.push(curValue);
-                    } else {
-                        if (my.pop() != test.pop()) {
-                            System.out.println("Oops!");
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println("finish!");
 
     }
 
