@@ -14,7 +14,7 @@ public class SelectionSort {
         //System.out.println(Arrays.toString(generateRandomArray(50, 50)));
 
         //对数器
-        int testTimes = 10000;
+        int testTimes = 1000000;
         int maxSize = 100;
         int maxValue = 1000;
         boolean succeed = true;
