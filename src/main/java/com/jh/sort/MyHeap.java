@@ -78,7 +78,6 @@ public class MyHeap {
                 index = (index - 1) / 2;
             }
         }
-
         //弹出最大值,同时剩余的元素依然组成大跟堆
         public int pop() {
             int ans = heap[0];
@@ -94,13 +93,13 @@ public class MyHeap {
             // 左孩子: 2* index+1
             // 右孩子: 2 *index+2
             // 父节点: (index-1)/2
-            int left = 2 * index + 1;
-            while (left < heapSize) {
+            int left = 2 * index + 1; //左孩子的下标
+            while (left < heapSize) {//证明肯定有孩子(至少有一个左孩子)
                 int max = left + 1 < heapSize && arr[left + 1] > arr[left] ? left + 1 : left;//找到左右孩子中最大值的索引
-                if (arr[index] >= arr[max]) break;
-                swap(arr, index, max);
-                index = max;
-                left = 2 * index + 1;
+                if (arr[index] >= arr[max]) break;//如果当前元素比最大的子孩子大,退出完成
+                swap(arr, index, max);//交换
+                index = max; //把交换后新的位置赋值给index
+                left = 2 * index + 1;//重新计算index的左孩子的坐标值
             }
         }
 
